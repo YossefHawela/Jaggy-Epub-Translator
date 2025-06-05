@@ -13,6 +13,14 @@ namespace Jaggy_Epub_Translator.Modules.Translators
         public override TranslatorType Type => TranslatorType.GoogleTranslate;
 
         private GTranslatorAPIClient translatorAPIClient = new GTranslatorAPIClient();
+
+        public GoogleTranslator()
+        {
+            translatorAPIClient.Settings.SplitStringBeforeTranslate = false;
+            translatorAPIClient.Settings.ParallelizeTranslationOfSegments = true;
+            translatorAPIClient.Settings.NetworkQueryTimeout = 0;
+
+        }
         public override async Task<Translation> TranslateAsync(string text, Languages sourceLanguage, Languages targetLanguage,Action<float> progressAction=null!)
         {
            
@@ -46,7 +54,20 @@ namespace Jaggy_Epub_Translator.Modules.Translators
                 {
                     progressAction?.Invoke(100);
 
-                return await translatorAPIClient.TranslateAsync(sourceLanguage, targetLanguage, text);
+                    var translation = await translatorAPIClient.TranslateAsync(sourceLanguage, targetLanguage, text);
+
+                  
+                    //if(translation.TranslatedText == text||translation.TranslatedText == translation.OriginalText)
+                    //{
+                    //    Console.WriteLine(translation.TranslatedText);
+                    //    Console.WriteLine(translation.OriginalText);
+                    //    Task.Delay(1000).Wait(); // Wait for a second before retrying
+
+                    //    Console.WriteLine("Translation is the same as original text, retrying...");
+                    //    throw new Exception("Translation is the same as original text, retrying...");
+                    //}
+
+                    return translation;
                         
                 }
                 catch
