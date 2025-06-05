@@ -16,6 +16,6 @@ namespace Jaggy_Epub_Translator.Modules.Translators
 
         public abstract TranslatorType Type { get; }
 
-        public abstract Task<Translation> TranslateAsync(string text, Languages sourceLanguage, Languages targetLanguage);
+        public abstract Task<Translation> TranslateAsync(string text, Languages sourceLanguage, Languages targetLanguage, Action<float> progressAction = null!);
     }
 }

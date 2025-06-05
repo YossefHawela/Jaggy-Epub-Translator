@@ -12,7 +12,6 @@ EpubReader epubReader = new EpubReader(path);
 await epubReader.ReadEpubAsync(p => Console.Write($"\rReading file: {p}%"));
 Console.WriteLine();
 
-//epubReader.EpubArchive?.Entries.ToList().ForEach(entry => Console.WriteLine(entry.FullName));
 
 epubReader.ScanContent();
 
@@ -26,8 +25,6 @@ HtmlDocument[] TranslatedDocuments = await HtmlTools.HtmlTranslator(documents, p
     Console.Write($"\rTranslating HTML: {precet}%");
 });
 
-
-//HtmlDocument[] TranslatedDocuments = documents;
 
 Stream[] streams = HtmlTools.GetStreamsFromHtmlDocuments(TranslatedDocuments);
 

@@ -19,7 +19,7 @@ namespace Jaggy_Epub_Translator.Modules.Html
 
             string Html = document.DocumentNode.InnerHtml;
 
-            string[] pragraphs = content.Split(new[] { "\r\n", "\r", "\n","." }, StringSplitOptions.RemoveEmptyEntries);
+            string[] pragraphs = Tools.SplitEveryN(content,new[] { "\r\n", "\r", "\n","." },20).ToArray();
            
 
             // Remove empty paragraphs
@@ -29,11 +29,15 @@ namespace Jaggy_Epub_Translator.Modules.Html
             {
                 string? prag = pragraphs[i];
 
-                var translation = await Translator.TranslateAsync(prag.Trim(), GTranslatorAPI.Languages.en, GTranslatorAPI.Languages.ar);
+                var translation = await Translator.TranslateAsync(prag.Trim(), GTranslatorAPI.Languages.en, GTranslatorAPI.Languages.ar, SubPrecentage => 
+                {
+                    float Precentage = ((i / (float)pragraphs.Length) * 100) + (SubPrecentage * (1 / (float)pragraphs.Length));
+
+                    progressAction?.Invoke(Precentage);
+                });
                 Html = Html.Replace(prag.Trim(), translation.TranslatedText);
 
 
-                progressAction?.Invoke((i / (float)pragraphs.Length) * 100);
 
             }
 
