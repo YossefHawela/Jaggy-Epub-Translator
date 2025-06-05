@@ -5,7 +5,7 @@ using Jaggy_Epub_Translator.Modules.Archive;
 using Jaggy_Epub_Translator.Modules.Epub;
 using Jaggy_Epub_Translator.Modules.Html;
 
-string path = @"F:\Temp\test\COPE__Classroom_Of_Political_Elites.epub";
+string path = @"F:\Temp\test\Too Many Losing Heroines! Volume 2.epub";
 
 EpubReader epubReader = new EpubReader(path);
 

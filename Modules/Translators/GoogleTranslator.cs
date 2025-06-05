@@ -40,10 +40,8 @@ namespace Jaggy_Epub_Translator.Modules.Translators
                         return await translatorAPIClient.TranslateAsync(sourceLanguage, targetLanguage, text);
 
                     }
-                    catch (Exception ex)
+                    catch
                     {
-                        Console.WriteLine($"Translation {text.Length} failed: {ex.Message}");
-
                         await Task.Delay(1000);
 
                         return await TranslateAsync(text, sourceLanguage, targetLanguage);
