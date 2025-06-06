@@ -155,10 +155,6 @@ A: Perfect? Ha! It tries. Sometimes formatting survives. Sometimes it doesn’t.
 
 A: If Google Translate can, so can this disaster. If not, tough luck.
 
-**Q: Does it save my sanity?**
-
-A: Negative. Prepare for frustration, patience, and existential dread.
-
 **Q: Can I contribute?**
 
 A: Sure, if you want to make it worse or fix it—good luck either way.
