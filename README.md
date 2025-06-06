@@ -37,7 +37,7 @@ Download it from \[#linkhere] if you trust binaries made by strangers on the int
 
 ```bash
 git clone https://github.com/YossefHawela/Jaggy-Epub-Translator
-cd Jaggy_Epub_Translator
+cd Jaggy-Epub-Translator
 dotnet build
 ```
 
