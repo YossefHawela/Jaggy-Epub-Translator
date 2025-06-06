@@ -26,7 +26,7 @@ All this while taking enough time for you to learn Japanese instead.
 ## 🧾 Requirements
 
 * Self-contained: No .NET install needed. Big fat exe. Works on machines with no clue what .NET is.
-* Internet connection (for the Google Translate API to disappoint you properly)
+* Internet connection (unless you think Google Translate works on black magic)
 * A bit of patience. Or a lot. Maybe make some tea.
 
 ---
