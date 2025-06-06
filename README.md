@@ -124,78 +124,103 @@ Have fun. Do whatever. Seriously.
 ## 🧠 FAQ
 
 **Q: It’s not working!**
+
 A: Shocking. Check your file path, language codes, and maybe your life choices.
 
 **Q: It translated “hero” to “toaster”?**
+
 A: Google Translate is the real villain here.
 
 **Q: Is there a GUI?**
+
 A: No. This tool is as user-friendly as Vim.
 
 **Q: Can you add a GUI?**
+
 A: Do you think you’re funny? No. Move on.
 
 **Q: Why is it so slow?**
+
 A: Because “fast and reliable” isn’t in the budget. Welcome to JaggyLand.
 
 **Q: Can I use this for PDFs or MOBI files?**
+
 A: No. It’s an EPUB translator, not a miracle worker.
 
 **Q: Will it keep my formatting perfect?**
+
 A: Perfect? Ha! It tries. Sometimes formatting survives. Sometimes it doesn’t. Roll the dice.
 
 **Q: Can it translate to Klingon?**
+
 A: If Google Translate can, so can this disaster. If not, tough luck.
 
 **Q: Does it save my sanity?**
+
 A: Negative. Prepare for frustration, patience, and existential dread.
 
 **Q: Can I contribute?**
+
 A: Sure, if you want to make it worse or fix it—good luck either way.
 
 **Q: Why does it crash sometimes?**
+
 A: Because bugs are features. Embrace the chaos.
 
 **Q: Will future versions be better?**
+
 A: Depends if I survive the caffeine shortage.
 
 **Q: Why do I even use this?**
+
 A: Because you hate yourself or love jagged translations. No judgment.
 
 **Q: Will future versions be better?**
+
 A: Who said there *will* be future versions? Don’t get your hopes up.
 
 **Q: Can I get support if something breaks?**
+
 A: Support? This isn’t customer service—it’s a hobby project held together by duct tape and bad jokes.
 
 **Q: Why is the output sometimes unreadable?**
+
 A: Because “perfect translation” and “Jaggy” are enemies. Pick one.
 
 **Q: Can I translate entire series at once?**
+
 A: You can try, but your PC might cry.
 
 **Q: Can I trust this tool with sensitive files?**
+
 A: Sure, if you want your secrets to take a vacation. This thing’s about as secure as a screen door on a submarine.
 
 **Q: Is it open-source?**
+
 A: Yes. Steal the code, rebrand it, call it your masterpiece. I don’t care.
 
 **Q: Why does it sometimes ignore my language settings?**
+
 A: Because it’s jaggy. It does what it wants.
 
 **Q: Can I run this on Mac/Linux?**
+
 A: Maybe. If you like gambling.
 
 **Q: Will it handle DRM-protected EPUBs?**
+
 A: Nope. It’s a translator, not a hacker.
 
 **Q: Why does it crash randomly?**
+
 A: Because chaos is the name of the game here.
 
 **Q: How do I make it faster?**
+
 A: Stop using it. Problem solved.
 
 **Q: Did you just ask GPT to write this repo too?**
+
 A: Of course. I outsourced half my brain to an AI. You’re welcome. Now go bother someone else.
 
 
