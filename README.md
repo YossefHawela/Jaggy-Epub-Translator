@@ -36,7 +36,7 @@ All this while taking enough time for you to learn Japanese instead.
 Download it from \[#linkhere] if you trust binaries made by strangers on the internet. Or build it yourself:
 
 ```bash
-git clone #linkhere
+git clone https://github.com/YossefHawela/Jaggy-Epub-Translator
 cd Jaggy_Epub_Translator
 dotnet build
 ```
