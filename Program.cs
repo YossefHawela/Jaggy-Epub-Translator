@@ -39,9 +39,10 @@ if (string.IsNullOrWhiteSpace(outputPath))
     return;
 }
 
+// If outputPath has extension -> treat as full file path
 if (Path.HasExtension(outputPath))
 {
-    outputDir = Path.GetDirectoryName(outputPath)!;
+    outputDir = Path.GetDirectoryName(outputPath);
     if (string.IsNullOrEmpty(outputDir))
     {
         outputDir = Directory.GetCurrentDirectory();
@@ -50,31 +51,33 @@ if (Path.HasExtension(outputPath))
 }
 else
 {
-    outputDir = outputPath;
-    if (!outputDir.EndsWith(Path.DirectorySeparatorChar.ToString()))
-        outputDir += Path.DirectorySeparatorChar;
-
-    if (!Directory.Exists(outputDir))
+    // No extension means outputPath can be either directory or filename without extension
+    if (Directory.Exists(outputPath))
     {
-        Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine("WARNING: Output directory does not exist. Process aborted.");
-        Console.ResetColor();
-        return;
-    }
+        outputDir = outputPath;
+        if (!outputDir.EndsWith(Path.DirectorySeparatorChar.ToString()))
+            outputDir += Path.DirectorySeparatorChar;
 
-    string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
-    string defaultFileName = $"{inputFileNameWithoutExt}_{timestamp}{inputFileExt}";
-    outputPath = Path.Combine(outputDir, defaultFileName);
+        string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+        string defaultFileName = $"{inputFileNameWithoutExt}_{timestamp}{inputFileExt}";
+        outputPath = Path.Combine(outputDir, defaultFileName);
+    }
+    else
+    {
+        // Treat as file name without extension in current directory
+        outputDir = Directory.GetCurrentDirectory();
+        string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+        outputPath = Path.Combine(outputDir, $"{outputPath}_{timestamp}{inputFileExt}");
+    }
 }
 
 if (!Directory.Exists(outputDir))
 {
     Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine("WARNING: Output directory does not exist. Process aborted.");
+    Console.WriteLine("WARNING: Output directory does not exist. Process will fail and waste a lot of time.");
     Console.ResetColor();
     return;
 }
-
 
 EpubReader epubReader = new EpubReader(filePath);
 
@@ -119,4 +122,5 @@ string targetPath = outputPath;
 
 File.WriteAllBytes(targetPath,ArchiveBytes);
 
-Console.WriteLine("Done!");
+
+Console.WriteLine($"\nOutput saved to: {outputPath}");
