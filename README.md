@@ -118,6 +118,12 @@ Have fun. Do whatever. Seriously.
 
 ---
 
+## 🛠 Contributing
+
+Want to break or improve the code? Read this first: [CONTRIBUTING.md](CONTRIBUTING.md)
+
+---
+
 
 ## 🧠 FAQ
 
