@@ -122,33 +122,43 @@ Have fun. Do whatever. Seriously.
 ## 🧠 FAQ
 
 Q: It’s not working!
+
 A: Shocking. Check your file path, language codes, and maybe your life choices.
 
 Q: It translated “hero” to “toaster”?
+
 A: Google Translate is the real villain here.
 
 Q: Is there a GUI?
+
 A: No. This tool is as user-friendly as Vim.
 
 Q: Can you add a GUI?
+
 A: Do you think you’re funny? No. Move on.
 
 Q: Why is it so slow?
+
 A: Because “fast and reliable” isn’t in the budget. Welcome to JaggyLand.
 
 Q: Can I use this for PDFs or MOBI files?
+
 A: No. It’s an EPUB translator, not a miracle worker.
 
 Q: Can I contribute?
+
 A: Sure, if you want to make it worse or fix it—good luck either way.
 
 Q: Will future versions be better?
+
 A: Who said there will be future versions? Don’t get your hopes up.
 
 Q: Can I trust this tool with sensitive files?
+
 A: Sure, if you want your secrets to take a vacation. This thing’s about as secure as a screen door on a submarine.
 
 Q: Did you just ask GPT to write this repo too?
+
 A: Of course. I outsourced half my brain to an AI. You’re welcome. Now go bother someone else.
 
 ---
