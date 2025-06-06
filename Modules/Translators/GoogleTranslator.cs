@@ -18,7 +18,7 @@ namespace Jaggy_Epub_Translator.Modules.Translators
         {
             translatorAPIClient.Settings.SplitStringBeforeTranslate = false;
             translatorAPIClient.Settings.ParallelizeTranslationOfSegments = true;
-            translatorAPIClient.Settings.NetworkQueryTimeout = 0;
+            translatorAPIClient.Settings.NetworkQueryTimeout = 15000;
 
         }
         public override async Task<Translation> TranslateAsync(string text, Languages sourceLanguage, Languages targetLanguage,Action<float> progressAction=null!)

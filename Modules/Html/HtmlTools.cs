@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using GTranslatorAPI;
+using HtmlAgilityPack;
 using Jaggy_Epub_Translator.Modules.Translators;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Jaggy_Epub_Translator.Modules.Html
     internal static class HtmlTools
     {
         public static Translator Translator { get; set; } = new GoogleTranslator();
-        public static async Task<HtmlDocument> HtmlTranslator(HtmlDocument document, Action<float> progressAction = null!)
+        public static async Task<HtmlDocument> HtmlTranslator(HtmlDocument document,Languages sourceLanguage,Languages TargetLanguage, Action<float> progressAction = null!)
         {
             var nodes = document.DocumentNode
                 .Descendants()
@@ -46,7 +47,7 @@ namespace Jaggy_Epub_Translator.Modules.Html
 
         }
 
-        public static async Task<HtmlDocument[]> HtmlTranslator(HtmlDocument[] htmlDocuments,Action<float> progressAction = null!)
+        public static async Task<HtmlDocument[]> HtmlTranslator(HtmlDocument[] htmlDocuments, Languages sourceLanguage, Languages TargetLanguage, Action<float> progressAction = null!)
         {
 
             HtmlDocument[] translatedDocuments = new HtmlDocument[htmlDocuments.Length];
@@ -56,7 +57,7 @@ namespace Jaggy_Epub_Translator.Modules.Html
 
                 HtmlDocument? document = htmlDocuments[i];
 
-                translatedDocuments[i] = await HtmlTranslator(document, SubPrecentage =>
+                translatedDocuments[i] = await HtmlTranslator(document, sourceLanguage,TargetLanguage, SubPrecentage =>
                 {
                     float Precentage = ((i / (float)htmlDocuments.Length) * 100) + (SubPrecentage * (1 / (float)htmlDocuments.Length));
 

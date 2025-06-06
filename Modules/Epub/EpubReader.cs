@@ -55,8 +55,6 @@ namespace Jaggy_Epub_Translator.Modules.Epub
 
                     ContainerFolderPath = Path.GetDirectoryName(fullPath)!;
 
-                    Console.WriteLine(ContainerFolderPath);
-
                     contentEntry = ArchiveTools.GetArchiveEntry(EpubArchive, fullPath);
 
                     break;
