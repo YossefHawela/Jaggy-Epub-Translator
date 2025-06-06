@@ -56,16 +56,6 @@ namespace Jaggy_Epub_Translator.Modules.Translators
 
                     var translation = await translatorAPIClient.TranslateAsync(sourceLanguage, targetLanguage, text);
 
-                  
-                    //if(translation.TranslatedText == text||translation.TranslatedText == translation.OriginalText)
-                    //{
-                    //    Console.WriteLine(translation.TranslatedText);
-                    //    Console.WriteLine(translation.OriginalText);
-                    //    Task.Delay(1000).Wait(); // Wait for a second before retrying
-
-                    //    Console.WriteLine("Translation is the same as original text, retrying...");
-                    //    throw new Exception("Translation is the same as original text, retrying...");
-                    //}
 
                     return translation;
                         

@@ -15,40 +15,34 @@ namespace Jaggy_Epub_Translator.Modules.Html
         public static Translator Translator { get; set; } = new GoogleTranslator();
         public static async Task<HtmlDocument> HtmlTranslator(HtmlDocument document, Action<float> progressAction = null!)
         {
-            string content = document.DocumentNode.InnerText;
+            var nodes = document.DocumentNode
+                .Descendants()
+                .Where(n => n.NodeType == HtmlNodeType.Text && !string.IsNullOrWhiteSpace(n.InnerText))
+                .ToList();
 
-            string Html = document.DocumentNode.InnerHtml;
+            int total = nodes.Count;
 
-            string[] pragraphs = content.Split(new[] { "\r\n", "\r", "\n","." },StringSplitOptions.RemoveEmptyEntries).ToArray();
-           
-
-            // Remove empty paragraphs
-            pragraphs = pragraphs.Where(p => !string.IsNullOrWhiteSpace(p)).ToArray();
-
-            for (int i = 0; i < pragraphs.Length; i++)
+            for (int i = 0; i < total; i++)
             {
-                string? prag = pragraphs[i];
+                var node = nodes[i];
+                string originalText = node.InnerText.Trim();
 
-                var translation = await Translator.TranslateAsync(prag.Trim(), GTranslatorAPI.Languages.en, GTranslatorAPI.Languages.ar, SubPrecentage => 
-                {
-                    float Precentage = ((i / (float)pragraphs.Length) * 100) + (SubPrecentage * (1 / (float)pragraphs.Length));
+                var translation = await Translator.TranslateAsync(
+                    originalText,
+                    GTranslatorAPI.Languages.en,
+                    GTranslatorAPI.Languages.ar,
+                    subPercent =>
+                    {
+                        float percent = ((i / (float)total) * 100) + (subPercent * (1f / total));
+                        progressAction?.Invoke(percent);
+                    });
 
-                    progressAction?.Invoke(Precentage);
-                });
-
-                Html = Html.Replace(prag.Trim(), translation.TranslatedText);
-
+                node.InnerHtml = translation.TranslatedText;
             }
 
             progressAction?.Invoke(100);
 
-
-            var TranslatedDocument = new HtmlDocument();
-
-
-            TranslatedDocument.LoadHtml(Html);
-
-            return TranslatedDocument;
+            return document;
 
         }
 
