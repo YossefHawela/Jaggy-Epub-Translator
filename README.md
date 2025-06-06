@@ -33,7 +33,7 @@ All this while taking enough time for you to learn Japanese instead.
 
 ## 🛠️ Installation
 
-Download it from \[#linkhere] if you trust binaries made by strangers on the internet. Or build it yourself:
+Download it from https://github.com/YossefHawela/Jaggy-Epub-Translator/releases/download/v0.1/Jaggy-Epub-Translator.exe if you trust binaries made by strangers on the internet. Or build it yourself:
 
 ```bash
 git clone https://github.com/YossefHawela/Jaggy-Epub-Translator
@@ -98,14 +98,28 @@ A: Google Translate is the real villain here.
 **Q: Is there a GUI?**
 A: No. This tool is as user-friendly as Vim.
 
+
+## 🧙‍♂️ Can I Use or Edit the Code?
+
+Yes. Totally.
+
+You can:
+
+* 📦 Use it
+* 🧪 Break it
+* ✏️ Change it
+* 🤡 Publish it like *you* wrote it
+  (I won’t cry. ChatGPT wrote half of it anyway.)
+
+No license police will show up. No one cares.
+Just don’t message me if it explodes or translates “Tatakai” to “Taco Bell”.
+
+Have fun. Do whatever. Seriously.
+
+
+
 ---
 
-## 🧙 Contributing
-
-Fork it. Break it more. Open a PR. Or just laugh and move on.
-Repo: \[#linkhere]
-
----
 
 ## 🪦 Final Words
 
