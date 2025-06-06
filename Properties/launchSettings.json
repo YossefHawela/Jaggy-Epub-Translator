@@ -2,7 +2,7 @@
   "profiles": {
     "Jaggy-Epub-Translator": {
       "commandName": "Project",
-      "commandLineArgs": "\"F:\\Temp\\test\\test.epub\" en ar"
+      "commandLineArgs": "\"F:\\Temp\\test\\test.epub\" en ar test-translated"
     }
   }
 }

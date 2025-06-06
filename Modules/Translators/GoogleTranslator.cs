@@ -1,4 +1,10 @@
-﻿using GTranslatorAPI;
+﻿/// <summary>
+/// Provides translation services using the Google Translate API.
+/// This class implements the Translator interface, handling text translation requests,
+/// including splitting large texts and reporting progress. It manages retries on failure
+/// and configures the underlying GTranslatorAPIClient for optimal translation performance.
+/// </summary>
+using GTranslatorAPI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,12 +14,23 @@ using System.Threading.Tasks;
 
 namespace Jaggy_Epub_Translator.Modules.Translators
 {
+    /// <summary>
+    /// Translator implementation utilizing Google Translate via GTranslatorAPIClient.
+    /// Handles large text by splitting, supports progress reporting, and retries on errors.
+    /// </summary>
     internal class GoogleTranslator:Translator
     {
+        /// <summary>
+        /// Gets the type of translator (GoogleTranslate).
+        /// </summary>
         public override TranslatorType Type => TranslatorType.GoogleTranslate;
 
         private GTranslatorAPIClient translatorAPIClient = new GTranslatorAPIClient();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GoogleTranslator"/> class,
+        /// configuring the translation client settings.
+        /// </summary>
         public GoogleTranslator()
         {
             translatorAPIClient.Settings.SplitStringBeforeTranslate = false;
@@ -21,6 +38,16 @@ namespace Jaggy_Epub_Translator.Modules.Translators
             translatorAPIClient.Settings.NetworkQueryTimeout = 15000;
 
         }
+
+        /// <summary>
+        /// Asynchronously translates the specified text from the source language to the target language.
+        /// Splits large texts, reports progress, and retries on failure.
+        /// </summary>
+        /// <param name="text">The text to translate.</param>
+        /// <param name="sourceLanguage">The source language.</param>
+        /// <param name="targetLanguage">The target language.</param>
+        /// <param name="progressAction">Optional action to report translation progress (0-100).</param>
+        /// <returns>A <see cref="Task{Translation}"/> representing the asynchronous translation operation.</returns>
         public override async Task<Translation> TranslateAsync(string text, Languages sourceLanguage, Languages targetLanguage,Action<float> progressAction=null!)
         {
            

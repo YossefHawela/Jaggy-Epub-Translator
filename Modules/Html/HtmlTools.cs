@@ -1,4 +1,8 @@
-﻿using GTranslatorAPI;
+﻿/// <summary>
+/// Provides utility methods for translating and processing HTML documents using a specified Translator.
+/// Includes methods for translating single or multiple HtmlDocument instances, as well as converting them to streams.
+/// </summary>
+using GTranslatorAPI;
 using HtmlAgilityPack;
 using Jaggy_Epub_Translator.Modules.Translators;
 using System;
@@ -11,9 +15,25 @@ using System.Web;
 
 namespace Jaggy_Epub_Translator.Modules.Html
 {
+    /// <summary>
+    /// Static helper class for HTML translation and conversion operations.
+    /// </summary>
     internal static class HtmlTools
     {
+        /// <summary>
+        /// Gets or sets the Translator used for translating HTML content.
+        /// </summary>
         public static Translator Translator { get; set; } = new GoogleTranslator();
+
+        /// <summary>
+        /// Asynchronously translates all text nodes in the given HtmlDocument from the source language to the target language.
+        /// Reports progress via the provided action.
+        /// </summary>
+        /// <param name="document">The HTML document to translate.</param>
+        /// <param name="sourceLanguage">The source language.</param>
+        /// <param name="TargetLanguage">The target language.</param>
+        /// <param name="progressAction">Optional action to report translation progress (0-100).</param>
+        /// <returns>The translated HtmlDocument.</returns>
         public static async Task<HtmlDocument> HtmlTranslator(HtmlDocument document,Languages sourceLanguage,Languages TargetLanguage, Action<float> progressAction = null!)
         {
             var nodes = document.DocumentNode
@@ -47,6 +67,15 @@ namespace Jaggy_Epub_Translator.Modules.Html
 
         }
 
+        /// <summary>
+        /// Asynchronously translates all text nodes in an array of HtmlDocument objects.
+        /// Reports overall progress via the provided action.
+        /// </summary>
+        /// <param name="htmlDocuments">Array of HTML documents to translate.</param>
+        /// <param name="sourceLanguage">The source language.</param>
+        /// <param name="TargetLanguage">The target language.</param>
+        /// <param name="progressAction">Optional action to report translation progress (0-100).</param>
+        /// <returns>Array of translated HtmlDocument objects.</returns>
         public static async Task<HtmlDocument[]> HtmlTranslator(HtmlDocument[] htmlDocuments, Languages sourceLanguage, Languages TargetLanguage, Action<float> progressAction = null!)
         {
 
@@ -71,7 +100,11 @@ namespace Jaggy_Epub_Translator.Modules.Html
             return translatedDocuments;
         }
 
-
+        /// <summary>
+        /// Converts an HtmlDocument to a UTF-8 encoded memory stream.
+        /// </summary>
+        /// <param name="document">The HTML document to convert.</param>
+        /// <returns>A stream containing the HTML content.</returns>
         public static Stream GetStreamFromHtmlDocument(HtmlDocument document)
         {
             string htmlString = document.DocumentNode.OuterHtml;
@@ -84,6 +117,11 @@ namespace Jaggy_Epub_Translator.Modules.Html
 
         }
 
+        /// <summary>
+        /// Converts an array of HtmlDocument objects to an array of UTF-8 encoded memory streams.
+        /// </summary>
+        /// <param name="documents">Array of HTML documents to convert.</param>
+        /// <returns>Array of streams containing the HTML content.</returns>
         public static Stream[] GetStreamsFromHtmlDocuments(HtmlDocument[] documents)
         {
             Stream[] streams = new Stream[documents.Length];

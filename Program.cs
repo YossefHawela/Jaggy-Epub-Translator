@@ -1,11 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using GTranslatorAPI;
+﻿using GTranslatorAPI;
 using HtmlAgilityPack;
 using Jaggy_Epub_Translator.Modules.Archive;
 using Jaggy_Epub_Translator.Modules.Epub;
 using Jaggy_Epub_Translator.Modules.Html;
 
+// Check for required arguments
 if (args.Length < 4)
 {
     Console.WriteLine("Usage: <program> <filePath> <sourceLang> <targetLang> <outputPath>");
@@ -19,6 +18,7 @@ Languages targetLanguage = Enum.Parse<Languages>(args[2], true);
 
 string outputPath = args[3];
 
+// Validate input file existence
 if (!File.Exists(filePath))
 {
     Console.ForegroundColor = ConsoleColor.Red;
@@ -31,6 +31,7 @@ string outputDir;
 string inputFileNameWithoutExt = Path.GetFileNameWithoutExtension(filePath);
 string inputFileExt = Path.GetExtension(filePath);
 
+// Validate output path
 if (string.IsNullOrWhiteSpace(outputPath))
 {
     Console.ForegroundColor = ConsoleColor.Red;
@@ -39,10 +40,10 @@ if (string.IsNullOrWhiteSpace(outputPath))
     return;
 }
 
-// If outputPath has extension -> treat as full file path
+// Determine output directory and file name based on outputPath argument
 if (Path.HasExtension(outputPath))
 {
-    outputDir = Path.GetDirectoryName(outputPath);
+    outputDir = Path.GetDirectoryName(outputPath)!;
     if (string.IsNullOrEmpty(outputDir))
     {
         outputDir = Directory.GetCurrentDirectory();
@@ -51,7 +52,7 @@ if (Path.HasExtension(outputPath))
 }
 else
 {
-    // No extension means outputPath can be either directory or filename without extension
+    // No extension: treat as directory or filename without extension
     if (Directory.Exists(outputPath))
     {
         outputDir = outputPath;
@@ -71,56 +72,55 @@ else
     }
 }
 
+// Warn if output directory does not exist
 if (!Directory.Exists(outputDir))
 {
     Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine("WARNING: Output directory does not exist. Process will fail and waste a lot of time.");
+    Console.WriteLine("WARNING: Output directory does not exist.");
     Console.ResetColor();
     return;
 }
 
+// Read and scan the EPUB file
 EpubReader epubReader = new EpubReader(filePath);
 
 await epubReader.ReadEpubAsync(p => Console.Write($"\rReading file: {p}%"));
 Console.WriteLine();
 
-
 epubReader.ScanContent();
-
 Console.WriteLine();
 
+// Extract XHTML documents from the EPUB
 HtmlDocument[] documents = epubReader.GetXHtmlDocuments();
 
-
-HtmlDocument[] TranslatedDocuments = await HtmlTools.HtmlTranslator(documents, sourceLanguage,targetLanguage, precet =>
+// Translate all XHTML documents
+HtmlDocument[] TranslatedDocuments = await HtmlTools.HtmlTranslator(documents, sourceLanguage, targetLanguage, precet =>
 {
     Console.Write($"\rTranslating EPUB: {precet.ToString("0.00")}%");
 });
 
 Console.WriteLine();
 
-
-
+// Convert translated documents to streams
 Stream[] streams = HtmlTools.GetStreamsFromHtmlDocuments(TranslatedDocuments);
 
-
+// Get all files from the EPUB archive
 var AllFiles = ArchiveTools.GetAllEntriesAsDictionary(epubReader.EpubArchive);
-
 var xhtmlEntries = epubReader.XHtmlEntries;
 
-
+// Replace original XHTML entries with translated versions
 for (int i = 0; i < TranslatedDocuments.Length; i++)
 {
     var entry = xhtmlEntries[i];
     AllFiles[entry.FullName] = streams[i];
 }
 
-
+// Create new EPUB archive with translated content
 var ArchiveBytes = ArchiveTools.CreateZipArchive(AllFiles);
 
 string targetPath = outputPath;
 
-File.WriteAllBytes(targetPath,ArchiveBytes);
-
+// Write the new EPUB file to disk
+File.WriteAllBytes(targetPath, ArchiveBytes);
 
 Console.WriteLine($"\nOutput saved to: {outputPath}");
