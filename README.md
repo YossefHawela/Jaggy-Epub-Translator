@@ -82,7 +82,7 @@ If it crashes halfway, congrats, you're part of the beta test.
 
 * Keeps formatting! (unless it doesn't)
 * Translates all content! (eventually)
-* Timestamped output so you know exactly how long this waste of time took
+* output progress so you know exactly how long this waste of time took (Actualy no? find out yourself)
 * Probably doesn’t delete your original file (probably)
 
 ---
