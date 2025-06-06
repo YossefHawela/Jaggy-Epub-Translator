@@ -2,8 +2,6 @@
 
 ---
 
-# Jaggy EPUB Translator
-
 **The most gloriously unstable, painfully slow EPUB translator this side of a potato farm.**
 Rips your `.epub` apart, throws it at Google Translate like a drunk intern, then Frankenstein-stitches it back together. Results may vary. Formatting may cry. You definitely will.
 
